@@ -64,7 +64,7 @@ int main()
 		z[i]=1;	
 		}
 	}
-	for(int o=0;o<n;o++)
+	for(int p=0;p<n;p++)
 	{
 		
 	for(int i=0;i<n;i++)

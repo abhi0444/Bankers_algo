@@ -3,7 +3,7 @@ using namespace std;
 int main()
 {
 	int n,r,flag=0,g=0;
-	cout<<"Enter Number of Process"<<endl;
+	cout<<"Enter Number of Processes"<<endl;
 	cin>>n;
 	cout<<"Enter Number of Resources System have"<<endl;
 	cin>>r;
@@ -101,7 +101,7 @@ int main()
 	}
 	else
 	{
-		cout<<"Deadlock May Occurs"<<endl;
+		cout<<"Deadlock May Occur"<<endl;
 	}
 	return 0;
 }

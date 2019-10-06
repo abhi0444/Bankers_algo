@@ -3,105 +3,89 @@ using namespace std;
 int main()
 {
 	int n,r,flag=0,g=0;
-	cout<<"Enter Number of Processes"<<endl;
+	cout<<"Enter Number of Processes"<<endl;  			     //input number of processes
 	cin>>n;
-	cout<<"Enter Number of Resources System have"<<endl;
+	cout<<"Enter Number of Resources System have"<<endl;     //input number of instances/resources that system have
 	cin>>r;
 	int a[n][r],z[n];
-	for(int i=0;i<n;i++)
+	for(int i=0;i<n;i++)							   		//loop for input maximum number of resources that each process needed
 	{
-		cout<<"Enter Maximum Number of resources Needed for process "<<i+1<<" in order of A B C D"<<endl;
+		cout<<"Maximum Number of resources Needed by Process- "<<i+1<<endl;
 		for(int j=0;j<r;j++)
 		{
 			cin>>a[i][j];
 		}
 		z[i]=0;
 	}
-	cout<<"Enter number of Resources Process have"<<endl;
 	int h[n][r];
-	for(int i=0;i<n;i++)
+	for(int i=0;i<n;i++)								   //loop for input how many resources that each process hold's			
 	{
-		cout<<"Enter Number of resources that process "<<i+1<<" have"<<endl;
+		cout<<"Number of resources that "<<i+1<<" Process have"<<endl;
 		for(int j=0;j<r;j++)
 		{
 			cin>>h[i][j];
 		}
 	}
-	for(int i=0;i<n;i++)
+	cout<<"\t\t\t\tResources needed table"<<endl<<endl<<endl;
+	cout<<"Process No.\t\t";
+	for(int i=0;i<r;i++)
 	{
+		cout<<"R"<<i+1<<"\t\t";
+	}
+	for(int i=0;i<n;i++)								  //loop to calculate need of resources by processes
+	{	cout<<endl<<"P"<<i+1<<"\t\t\t";
 		for(int j=0;j<r;j++)
 		{
 			h[i][j]=a[i][j]-h[i][j];
+			cout<<h[i][j]<<"\t\t";
 		}
 	}
-	cout<<"Enter number of Resources System have"<<endl;
+	cout<<endl<<"Number of Resources System have"<<endl;
 	int k[r];
-	for(int i=0;i<n;i++)
+	for(int i=0;i<r;i++)								//loop to input number of resources system have
 	{
 		cin>>k[i];
 	}
-	for(int i=0;i<n;i++)
+	for(int ab=g;ab<n;)
 	{
-		cout<<"Checking for Process "<<i+1<<endl; 
-		for(int j=0;j<r;j++)
+		for(int i=0;i<n;i++)
 		{
-			if(k[j]<=h[i][j])
+			flag=0;
+			for(int j=0;j<r;j++)
 			{
-				break;
+				if(k[j]<h[i][j])
+				{	
+					break;
+				}
+				else 
+				{
+					flag=flag+1;	
+				}
 			}
-			else {
-				flag=flag+1;
-			}
-		}
-		if(flag>=r)
-		{
-		for(int j=0;j<r;j++)
-		{
-			k[j]=k[j]+a[i][j];
-		}
-		g=g+1;
-		cout<<"Process "<<i+1<<" is executed"<<endl;
-		z[i]=1;	
-		}
-	}
-	for(int p=0;p<n;p++)
-	{
-		
-	for(int i=0;i<n;i++)
-	{
-		if(z[i]==0)
-		{
-		cout<<"Checking for Process "<<i+1<<endl; 
-		for(int j=0;j<r;j++)
-		{
-			if(k[j]<=h[i][j])
+			if(flag>=r)
 			{
-				break;
+				for(int j=0;j<r;j++)
+				{
+					k[j]=k[j]+a[i][j];
+					h[i][j]=10000;
+				}
+				g=g+1;
+				cout<<"P"<<i+1<<" is executed"<<endl;				
 			}
-			else {
-				flag=flag+1;
-			}
 		}
-		if(flag>=r)
+		if(ab==g)
 		{
-		for(int j=0;j<r;j++)
-		{
-			k[j]=k[j]+a[i][j];
+			break;
 		}
-		g=g+1;
-		cout<<"Process "<<i+1<<" is executed"<<endl;
-		z[i]=1;	
-		}
-		}
-	}
+		ab=g;
 	}
 	if(g>=n)
 	{
-		cout<<"System is Safe"<<endl;
+		cout<<"\t\t\t\t\tSystem is Safe"<<endl<<endl;
 	}
 	else
 	{
-		cout<<"Deadlock May Occur"<<endl;
+		cout<<"\t\t\t\t\t\tDeadlock Occurs"<<endl;
 	}
 	return 0;
 }
